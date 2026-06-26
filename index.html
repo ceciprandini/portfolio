@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ceci Prandini — Portfolio Audiovisual</title>
+  <meta name="description" content="Portfolio sobrio de trabajos audiovisuales, dirección de video y piezas seleccionadas." />
+  <meta property="og:title" content="Ceci Prandini — Portfolio Audiovisual" />
+  <meta property="og:description" content="Portfolio sobrio de trabajos audiovisuales, dirección de video y piezas seleccionadas." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─── */
+    :root {
+      --bg:        #0B0B0B;
+      --surface:   #131313;
+      --border:    #222222;
+      --sand:      #FFFFFF;
+      --bone:      #FFFFFF;
+      --mid:       #666666;
+      --dim:       #3A3A3A;
+      --body:      'Inter', sans-serif;
+      --display:   'Space Grotesk', sans-serif;
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--bone);
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.65;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, h4 { font-weight: 400; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 150px;
+      background: linear-gradient(to bottom, rgba(11,11,11,0.97) 0%, transparent 100%);
+    }
+    .nav-name {
+      font-family: var(--display);
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      color: var(--bone);
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--bone); }
+
+    /* ─── HERO ─── */
+    header {
+      min-height: 38vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 150px 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(22px, 2.8vw, 44px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: #FFFFFF;
+    }
+    .hero-title em {
+      font-style: normal;
+      font-weight: 300;
+      color: #FFFFFF;
+    }
+    .hero-meta {
+      margin-top: 32px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    /* ─── SECTION LABELS ─── */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dim);
+      padding: 48px 150px 0;
+    }
+
+    /* ─── OBRA SECTION ─── */
+    #obra { padding-bottom: 80px; }
+
+    .obra-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      padding: 64px 150px;
+      transition: background 0.3s;
+    }
+    .obra-item:hover { background: var(--surface); }
+    .obra-item:first-of-type { border-top: 1px solid var(--border); margin-top: 32px; }
+
+    /* Media side */
+    .obra-media {
+      padding-right: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .obra-media .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      background: #000;
+      overflow: hidden;
+    }
+    .obra-media .video-wrap iframe,
+    .obra-media .video-wrap video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+
+
+    /* ─── SLIDER POR OBRA ─── */
+    .obra-slider {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #0B0B0B;
+      cursor: pointer;
+    }
+    .obra-slider .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .obra-slider .slide.active { opacity: 1; }
+    .obra-slider .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .obra-slider .slide .video-wrap {
+      position: absolute;
+      inset: 0;
+      padding-bottom: 0;
+      height: 100%;
+    }
+    .obra-slider .slide .video-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .slider-nav {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 2;
+    }
+    .slider-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none;
+      padding: 0;
+    }
+    .slider-dot.active { background: rgba(255,255,255,0.9); }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      width: 28px;
+      height: 28px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .obra-slider:hover .slider-arrow { opacity: 1; }
+    .slider-arrow.prev { left: 8px; }
+    .slider-arrow.next { right: 8px; }
+
+    /* Text side */
+    .obra-text { padding-left: 40px; display: flex; flex-direction: column; gap: 20px; }
+    .obra-num {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--dim);
+    }
+    .obra-title {
+      font-family: var(--display);
+      font-size: clamp(18px, 2.4vw, 28px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: #FFFFFF;
+    }
+    .obra-title em { font-style: normal; font-weight: 400; color: #FFFFFF; }
+    .obra-desc {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #AAAAAA;
+    }
+    .obra-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+    }
+    .obra-award {
+      font-size: 12px;
+      color: #FFFFFF;
+      border-left: 2px solid #333;
+      padding-left: 12px;
+      line-height: 1.5;
+    }
+    .obra-collab {
+      font-size: 12px;
+      color: var(--mid);
+      font-style: italic;
+    }
+
+    /* ─── PHOTO REEL (entre statement y bio) ─── */
+    .photo-reel-section {
+      padding: 64px 150px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .reel-label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dim);
+      padding-top: 4px;
+    }
+    .reel-track {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 4px;
+    }
+    .reel-thumb {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+      cursor: pointer;
+      display: block;
+    }
+    .reel-thumb:hover { opacity: 1; }
+
+    /* ─── ABOUT ─── */
+    #about {
+      padding: 64px 150px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .about-block {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 40px;
+    }
+    .about-block + .about-block {
+      margin-top: 48px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+    .about-block h2 {
+      font-family: var(--display);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 400;
+      color: var(--dim);
+      margin-bottom: 28px;
+    }
+    .statement-text {
+      font-size: 15px;
+      line-height: 1.85;
+      color: #CCCCCC;
+    }
+    .statement-text p + p { margin-top: 18px; }
+    .bio-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #999;
+    }
+    .bio-text strong {
+      color: var(--bone);
+      font-weight: 300;
+    }
+    .bio-text p + p { margin-top: 16px; }
+
+    .about-section-bio {
+      padding: 64px 150px 80px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── CONTACT ─── */
+    footer {
+      padding: 64px 150px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+    .footer-name {
+      font-family: var(--display);
+      font-size: 13px;
+      color: var(--mid);
+    }
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      transition: color 0.2s;
+      border-bottom: 1px solid transparent;
+    }
+    .footer-links a:hover {
+      color: var(--bone);
+      border-bottom-color: #555;
+    }
+    .footer-copy {
+      font-size: 11px;
+      color: var(--dim);
+      width: 100%;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── LIGHTBOX ─── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+    #lightbox-close {
+      position: absolute;
+      top: 24px; right: 32px;
+      font-size: 28px;
+      color: var(--mid);
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    #lightbox-close:hover { color: var(--bone); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .section-label { padding: 40px 24px 0; }
+      header { padding: 0 24px 48px; }
+      .section-label { padding: 40px 24px 0; }
+      .obra-item {
+        grid-template-columns: 1fr;
+        padding: 48px 24px;
+      }
+      .obra-media { padding-right: 0; margin-bottom: 32px; }
+      .obra-text { padding-left: 0; }
+      #about, .bio-section {
+        grid-template-columns: 1fr;
+        padding: 48px 24px 56px;
+        gap: 40px;
+      }
+      .about-block, .about-block + .about-block {
+        padding-right: 0;
+        padding-left: 0;
+      }
+      .photo-reel-section { grid-template-columns: 1fr; padding: 48px 24px; }
+      .reel-track { grid-template-columns: repeat(4, 1fr); }
+      footer { padding: 48px 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <span class="nav-name">Ceci Prandini</span>
+    <ul class="nav-links">
+      <li><a href="#obra">Obra</a></li>
+      <li><a href="#about">Statement</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <header>
+    <p class="hero-eyebrow">Portfolio Audiovisual</p>
+    <h1 class="hero-title">
+      Artista de Nuevos Medios, <em>Desarrolladora Creativa</em><br>y Diseñadora de Imagen y Sonido
+    </h1>
+    <div class="hero-meta">
+      <span>Edición · TouchDesigner · Instalación · Video · Interactivo</span>
+    </div>
+  </header>
+
+  <!-- ─── OBRA ─── -->
+  <section id="obra">
+    <p class="section-label">Obras seleccionadas</p>
+
+    <!-- OBRA 1 -->
+    <article class="obra-item">
+      <div class="obra-media">
+      <div class="obra-slider" id="slider-s1" data-current="0" data-total="3">
+      <div class="slide active">
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/000000000?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Critically | Almost Disappeared"></iframe>
+        </div>
+      </div>
+      <div class="slide">
+        <!-- foto 1: reemplaza src con tu imagen -->
+        <img src="https://placehold.co/600x600/131313/444?text=foto+1" alt="Critically | Almost Disappeared — foto 1" onclick="openLightbox(this.src)" />
+      </div>
+      <div class="slide">
+        <!-- foto 2: reemplaza src con tu imagen -->
+        <img src="https://placehold.co/600x600/131313/444?text=foto+2" alt="Critically | Almost Disappeared — foto 2" onclick="openLightbox(this.src)" />
+      </div>
+        <button class="slider-arrow prev" onclick="moveSlide('s1',-1)">&#8592;</button>
+        <button class="slider-arrow next" onclick="moveSlide('s1',1)">&#8594;</button>
+        <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s1',0)"></button><button class="slider-dot" onclick="goSlide('s1',1)"></button><button class="slider-dot" onclick="goSlide('s1',2)"></button></div>
+      </div>
+      </div>
+      <div class="obra-text">
+        <span class="obra-num">001</span>
+        <h2 class="obra-title">Critically <em>| Almost Disappeared</em></h2>
+        <p class="obra-desc">El código altera la forma, textura y continuidad de las imágenes. El cambio climático altera irreversiblemente las estructuras naturales de los glaciares. La deformación digital se vuelve un reflejo del derretimiento, retracción y desaparición de los glaciares.</p>
+        <div class="obra-tags">
+          <span class="tag">Videoarte</span><span class="tag">Mono/Stereo</span><span class="tag">UHD</span><span class="tag">2025</span>
+        </div>
+        <p class="obra-award">2026 — FILE Electronic Language International Festival (Brasil).<br>Selección en la categoría de videoarte.</p>
+      </div>
+    </article>
+
+    <!-- OBRA 2 -->
+    <article class="obra-item">
+      <div class="obra-media">
+      <div class="obra-slider" id="slider-s2" data-current="0" data-total="3">
+      <div class="slide active">
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/000000001?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="1 px"></iframe>
+        </div>
+      </div>
+      <div class="slide">
+        <!-- foto 1: reemplaza src con tu imagen -->
+        <img src="https://placehold.co/600x600/131313/444?text=foto+1" alt="1 px — foto 1" onclick="openLightbox(this.src)" />
+      </div>
+      <div class="slide">
+        <!-- foto 2: reemplaza src con tu imagen -->
+        <img src="https://placehold.co/600x600/131313/444?text=foto+2" alt="1 px — foto 2" onclick="openLightbox(this.src)" />
+      </div>
+        <button class="slider-arrow prev" onclick="moveSlide('s2',-1)">&#8592;</button>
+        <button class="slider-arrow next" onclick="moveSlide('s2',1)">&#8594;</button>
+        <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s2',0)"></button><button class="slider-dot" onclick="goSlide('s2',1)"></button><button class="slider-dot" onclick="goSlide('s2',2)"></button></div>
+      </div>
+      </div>
+      <div class="obra-text">
+        <span class="obra-num">002</span>
+        <h2 class="obra-title">1 <em>px</em></h2>
+        <p class="obra-desc">Ensayo visual que explora el colapso de los glaciares convirtiendo la pérdida material del hielo en una destrucción irreversible de datos digitales.</p>
+        <p class="obra-desc">El algoritmo devora la geografía física y digital, culminando en un vacío total que reduce la mayor reserva de agua dulce del planeta a un único, aislado e insignificante píxel sin memoria.</p>
+        <div class="obra-tags">
+          <span class="tag">Ensayo Visual</span><span class="tag">Mono/Stereo</span><span class="tag">UHD</span><span class="tag">2026</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- OBRA 3 -->
+    <article class="obra-item">
+      <div class="obra-media">
+      <div class="obra-slider" id="slider-s3" data-current="0" data-total="3">
+      <div class="slide active">
+        <!-- foto 1: reemplaza src con tu imagen -->
+        <img src="https://placehold.co/600x600/131313/444?text=foto+1" alt="critical_failure — foto 1" onclick="openLightbox(this.src)" />
+      </div>
+      <div class="slide">
+        <!-- foto 2: reemplaza src con tu imagen -->
+        <img src="https://placehold.co/600x600/131313/444?text=foto+2" alt="critical_failure — foto 2" onclick="openLightbox(this.src)" />
+      </div>
+      <div class="slide">
+        <!-- foto 3: reemplaza src con tu imagen -->
+        <img src="https://placehold.co/600x600/131313/444?text=foto+3" alt="critical_failure — foto 3" onclick="openLightbox(this.src)" />
+      </div>
+        <button class="slider-arrow prev" onclick="moveSlide('s3',-1)">&#8592;</button>
+        <button class="slider-arrow next" onclick="moveSlide('s3',1)">&#8594;</button>
+        <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s3',0)"></button><button class="slider-dot" onclick="goSlide('s3',1)"></button><button class="slider-dot" onclick="goSlide('s3',2)"></button></div>
+      </div>
+      </div>
+      <div class="obra-text">
+        <span class="obra-num">003</span>
+        <h2 class="obra-title"><em>critical_failure:</em> unrecoverable_asset</h2>
+        <p class="obra-desc">La obra se construye a partir de imágenes satelitales del glaciar Hektoria, en la Península Antártica, registradas por el Proyecto Copernicus entre 2021 y 2025.</p>
+        <div class="obra-tags">
+          <span class="tag">Editorial</span><span class="tag">Imagen Satelital</span><span class="tag">2025–2026</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- OBRA 4 -->
+    <article class="obra-item">
+      <div class="obra-media">
+      <div class="obra-slider" id="slider-s4" data-current="0" data-total="3">
+      <div class="slide active">
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/000000002?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Cartography"></iframe>
+        </div>
+      </div>
+      <div class="slide">
+        <!-- foto 1: reemplaza src con tu imagen -->
+        <img src="https://placehold.co/600x600/131313/444?text=foto+1" alt="Cartography — foto 1" onclick="openLightbox(this.src)" />
+      </div>
+      <div class="slide">
+        <!-- foto 2: reemplaza src con tu imagen -->
+        <img src="https://placehold.co/600x600/131313/444?text=foto+2" alt="Cartography — foto 2" onclick="openLightbox(this.src)" />
+      </div>
+        <button class="slider-arrow prev" onclick="moveSlide('s4',-1)">&#8592;</button>
+        <button class="slider-arrow next" onclick="moveSlide('s4',1)">&#8594;</button>
+        <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s4',0)"></button><button class="slider-dot" onclick="goSlide('s4',1)"></button><button class="slider-dot" onclick="goSlide('s4',2)"></button></div>
+      </div>
+      </div>
+      <div class="obra-text">
+        <span class="obra-num">004</span>
+        <h2 class="obra-title">Cartography of the <em>Irreversible:</em> Glaciar Retreat</h2>
+        <p class="obra-desc">La instalación toma el Glaciar Perito Moreno como punto de partida. Su cartografía reacciona a la presencia y el calor corporal del público: a más cuerpos, mayor temperatura; a mayor temperatura, más hielo derretido.</p>
+        <p class="obra-desc">Basada en datos científicos publicados en <em>Nature</em>. El sonido es de Ugo Nanni, <em>La canción de los glaciares árticos</em>, CC BY.</p>
+        <div class="obra-tags">
+          <span class="tag">Instalación</span><span class="tag">Interactivo</span><span class="tag">2026</span>
+        </div>
+        <p class="obra-collab">Con Alvaro Campo y Ceci Prandini</p>
+      </div>
+    </article>
+
+    <!-- OBRA 5 -->
+    <article class="obra-item">
+      <div class="obra-media">
+      <div class="obra-slider" id="slider-s5" data-current="0" data-total="3">
+      <div class="slide active">
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/000000003?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Videoclips"></iframe>
+        </div>
+      </div>
+      <div class="slide">
+        <!-- foto 1: reemplaza src con tu imagen -->
+        <img src="https://placehold.co/600x600/131313/444?text=foto+1" alt="Videoclips — foto 1" onclick="openLightbox(this.src)" />
+      </div>
+      <div class="slide">
+        <!-- foto 2: reemplaza src con tu imagen -->
+        <img src="https://placehold.co/600x600/131313/444?text=foto+2" alt="Videoclips — foto 2" onclick="openLightbox(this.src)" />
+      </div>
+        <button class="slider-arrow prev" onclick="moveSlide('s5',-1)">&#8592;</button>
+        <button class="slider-arrow next" onclick="moveSlide('s5',1)">&#8594;</button>
+        <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s5',0)"></button><button class="slider-dot" onclick="goSlide('s5',1)"></button><button class="slider-dot" onclick="goSlide('s5',2)"></button></div>
+      </div>
+      </div>
+      <div class="obra-text">
+        <span class="obra-num">005</span>
+        <h2 class="obra-title">Selección de <em>Videoclips</em></h2>
+        <p class="obra-desc">Piezas seleccionadas de dirección de videoclips. Texto descriptivo a completar.</p>
+        <div class="obra-tags">
+          <span class="tag">Videoclip</span><span class="tag">Dirección</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- OBRA 6 -->
+    <article class="obra-item">
+      <div class="obra-media">
+      <div class="obra-slider" id="slider-s6" data-current="0" data-total="3">
+      <div class="slide active">
+        <div class="video-wrap">
+          <iframe src="https://player.vimeo.com/video/000000004?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Isos"></iframe>
+        </div>
+      </div>
+      <div class="slide">
+        <!-- foto 1: reemplaza src con tu imagen -->
+        <img src="https://placehold.co/600x600/131313/444?text=foto+1" alt="Isos — foto 1" onclick="openLightbox(this.src)" />
+      </div>
+      <div class="slide">
+        <!-- foto 2: reemplaza src con tu imagen -->
+        <img src="https://placehold.co/600x600/131313/444?text=foto+2" alt="Isos — foto 2" onclick="openLightbox(this.src)" />
+      </div>
+        <button class="slider-arrow prev" onclick="moveSlide('s6',-1)">&#8592;</button>
+        <button class="slider-arrow next" onclick="moveSlide('s6',1)">&#8594;</button>
+        <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s6',0)"></button><button class="slider-dot" onclick="goSlide('s6',1)"></button><button class="slider-dot" onclick="goSlide('s6',2)"></button></div>
+      </div>
+      </div>
+      <div class="obra-text">
+        <span class="obra-num">006</span>
+        <h2 class="obra-title"><em>Isos</em></h2>
+        <p class="obra-desc">Texto descriptivo a completar.</p>
+        <div class="obra-tags">
+          <span class="tag">Por definir</span>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ─── STATEMENT ─── -->
+  <section id="about">
+    <div class="about-block">
+      <h2>Statement</h2>
+      <div class="statement-text">
+        <p>Mi práctica artística se sitúa en la intersección donde convergen la tecnología digital, la interactividad y la experiencia sensorial. Mi lenguaje ha evolucionado desde la linealidad de la pantalla tradicional hacia la exploración de los nuevos medios, el código creativo y el tiempo real.</p>
+        <p>Concibo la imagen y el sonido no como elementos estáticos o independientes, sino como flujos de información vivos, capaces de reaccionar, mutar y dialogar entre sí y con el entorno que los aloja.</p>
+        <p>El núcleo de mi investigación actual se centra en el desarrollo de sistemas interactivos y entornos generativos utilizando herramientas de programación visual como TouchDesigner. Me fascina la capacidad de transformar datos abstractos —ya sean estímulos sonoros, movimientos corporales, dinámicas espaciales o interacciones masivas— en arquitecturas visuales dinámicas.</p>
+        <p>Esta exploración de los flujos de datos encuentra hoy una urgencia conceptual y poética en la crisis climática, específicamente en el repliegue y la transformación de los ecosistemas glaciares.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ARCHIVO VISUAL ─── -->
+  <div class="photo-reel-section">
+    <p class="reel-label">Archivo visual</p>
+    <!-- Exactamente 8 fotos. Reemplaza cada src con tu imagen real. -->
+    <div class="reel-track" id="reel">
+      <img class="reel-thumb" src="https://placehold.co/400x400/131313/FFFFFF?text=1" alt="Archivo 1" onclick="openLightbox(this.src)" />
+      <img class="reel-thumb" src="https://placehold.co/400x400/1A1A1A/888888?text=2" alt="Archivo 2" onclick="openLightbox(this.src)" />
+      <img class="reel-thumb" src="https://placehold.co/400x400/222222/FFFFFF?text=3" alt="Archivo 3" onclick="openLightbox(this.src)" />
+      <img class="reel-thumb" src="https://placehold.co/400x400/1A1A1A/FFFFFF?text=4" alt="Archivo 4" onclick="openLightbox(this.src)" />
+      <img class="reel-thumb" src="https://placehold.co/400x400/131313/888888?text=5" alt="Archivo 5" onclick="openLightbox(this.src)" />
+      <img class="reel-thumb" src="https://placehold.co/400x400/222222/FFFFFF?text=6" alt="Archivo 6" onclick="openLightbox(this.src)" />
+      <img class="reel-thumb" src="https://placehold.co/400x400/131313/FFFFFF?text=7" alt="Archivo 7" onclick="openLightbox(this.src)" />
+      <img class="reel-thumb" src="https://placehold.co/400x400/1A1A1A/888888?text=8" alt="Archivo 8" onclick="openLightbox(this.src)" />
+    </div>
+  </div>
+
+  <!-- ─── BIO ─── -->
+  <section id="bio" class="about-section-bio">
+    <div class="about-block">
+      <h2>Bio</h2>
+      <div class="bio-text">
+        <p>Olavarría, Argentina. Diseñadora de Imagen y Sonido por la Universidad de Buenos Aires (UBA) y artista de nuevos medios especializada en el desarrollo de sistemas interactivos y entornos generativos en tiempo real mediante TouchDesigner.</p>
+        <p>Con más de quince años de trayectoria en la producción audiovisual integral, su perfil combina una sólida formación como fotógrafa y realizadora. Su experiencia abarca la fotografía, la realización de documentales, publicidad y la creación de videoclips.</p>
+        <p>En los últimos años, ha reorientado su práctica hacia la programación visual y el diseño conceptual de instalaciones multimedia. A través de residencias artísticas y proyectos internacionales, desarrolla arquitecturas visuales y performances en vivo que transforman el espacio e interpelan la percepción sensorial del espectador.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER / CONTACTO ─── -->
+  <footer id="contacto">
+    <div>
+      <p class="footer-name">Ceci Prandini</p>
+    </div>
+    <div class="footer-links">
+      <!-- Reemplaza con tus links reales -->
+      <a href="mailto:tu@email.com">Email</a>
+      <a href="https://instagram.com/tu-usuario" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://behance.net/tu-usuario" target="_blank" rel="noopener">Behance</a>
+    </div>
+    <p class="footer-copy">© 2026 Ceci Prandini — Todos los derechos reservados</p>
+  </footer>
+
+  <!-- ─── LIGHTBOX ─── -->
+  <div id="lightbox" onclick="closeLightbox()">
+    <button id="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightbox-img" src="" alt="Imagen ampliada" onclick="event.stopPropagation()" />
+  </div>
+
+  <!-- ─── JS ─── -->
+  <script>
+    /* Lightbox */
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+
+    /* Slider por obra */
+    function goSlide(uid, idx) {
+      const el = document.getElementById('slider-' + uid);
+      const slides = el.querySelectorAll('.slide');
+      const dots   = el.querySelectorAll('.slider-dot');
+      const total  = slides.length;
+      idx = ((idx % total) + total) % total;
+      slides.forEach((s,i) => s.classList.toggle('active', i === idx));
+      dots.forEach((d,i)   => d.classList.toggle('active', i === idx));
+      el.dataset.current = idx;
+    }
+    function moveSlide(uid, dir) {
+      const el = document.getElementById('slider-' + uid);
+      goSlide(uid, parseInt(el.dataset.current) + dir);
+    }
+
+
+  </script>
+
+</body>
+</html>
