@@ -118,18 +118,18 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--dim);
-      padding: 48px 150px 0;
+      padding-top: 48px;
     }
 
     /* ─── OBRA SECTION ─── */
-    #obra { padding-bottom: 80px; }
+    #obra { padding-bottom: 80px; padding-left: 150px; padding-right: 150px; }
 
     .obra-item {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 0;
       border-bottom: 1px solid var(--border);
-      padding: 64px 150px;
+      padding: 64px 0;
       transition: background 0.3s;
     }
     .obra-item:hover { background: var(--surface); }
@@ -137,10 +137,12 @@
 
     /* Media side */
     .obra-media {
-      padding-right: 40px;
+      padding-right: 0;
       display: flex;
       flex-direction: column;
       gap: 12px;
+      width: 75%;
+      margin: 0 auto;
     }
     .obra-media .video-wrap {
       position: relative;
@@ -162,7 +164,8 @@
     /* ─── SLIDER POR OBRA ─── */
     .obra-slider {
       position: relative;
-      aspect-ratio: 1 / 1;
+      width: 100%;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
       background: #0B0B0B;
       cursor: pointer;
@@ -233,7 +236,7 @@
     .slider-arrow.next { right: 8px; }
 
     /* Text side */
-    .obra-text { padding-left: 40px; display: flex; flex-direction: column; gap: 20px; }
+    .obra-text { padding-left: 0; padding-top: 24px; display: flex; flex-direction: column; gap: 16px; }
     .obra-num {
       font-size: 10px;
       letter-spacing: 0.18em;
@@ -284,6 +287,10 @@
       padding: 64px 150px;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+    }
+    .photo-reel-inner {
+      width: 75%;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 160px 1fr;
       gap: 40px;
@@ -317,6 +324,10 @@
       padding: 64px 150px;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+    }
+    #about > .about-block {
+      width: 75%;
+      margin: 0 auto;
     }
     .about-block {
       display: grid;
@@ -357,6 +368,10 @@
     .about-section-bio {
       padding: 64px 150px 80px;
       border-top: 1px solid var(--border);
+    }
+    .about-section-bio > .about-block {
+      width: 75%;
+      margin: 0 auto;
     }
 
     /* ─── CONTACT ─── */
@@ -508,25 +523,24 @@
     <!-- OBRA 1 -->
     <article class="obra-item">
       <div class="obra-media">
-      <div class="obra-slider" id="slider-s1" data-current="0" data-total="3">
+      <div class="obra-slider" id="slider-s1" data-current="0" data-total="4">
       <div class="slide active">
-        <div class="slide">
-          <iframe src="https://github.com/ceciprandini/portfolio/blob/991e6293daac4c6eb7d8caa507afed2770ca715f/Critically1.jpg" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Critically | Almost Disappeared"></iframe>
-        </div>
+        <img src="https://raw.githubusercontent.com/ceciprandini/portfolio/main/Critically1.jpg" alt="Critically | Almost Disappeared — foto 1" onclick="openLightbox(this.src)" />
       </div>
       <div class="slide">
-        <!-- foto 1: reemplaza src con tu imagen -->
-        <img src="https://github.com/ceciprandini/portfolio/blob/991e6293daac4c6eb7d8caa507afed2770ca715f/Critically3.jpg" alt="Critically | Almost Disappeared — foto 1" onclick="openLightbox(this.src)" />
+        <img src="https://raw.githubusercontent.com/ceciprandini/portfolio/main/Critically2.jpg" alt="Critically | Almost Disappeared — foto 2" onclick="openLightbox(this.src)" />
       </div>
       <div class="slide">
-        <!-- foto 2: reemplaza src con tu imagen -->
-        <img src="https://github.com/ceciprandini/portfolio/blob/991e6293daac4c6eb7d8caa507afed2770ca715f/Critically4.jpg" alt="Critically | Almost Disappeared — foto 2" onclick="openLightbox(this.src)" />
+        <img src="https://raw.githubusercontent.com/ceciprandini/portfolio/main/Critically3.jpg" alt="Critically | Almost Disappeared — foto 3" onclick="openLightbox(this.src)" />
+      </div>
+      <div class="slide">
+        <img src="https://raw.githubusercontent.com/ceciprandini/portfolio/main/Critically4.jpg" alt="Critically | Almost Disappeared — foto 4" onclick="openLightbox(this.src)" />
       </div>
         <button class="slider-arrow prev" onclick="moveSlide('s1',-1)">&#8592;</button>
         <button class="slider-arrow next" onclick="moveSlide('s1',1)">&#8594;</button>
-        <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s1',0)"></button><button class="slider-dot" onclick="goSlide('s1',1)"></button><button class="slider-dot" onclick="goSlide('s1',2)"></button></div>
+        <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s1',0)"></button><button class="slider-dot" onclick="goSlide('s1',1)"></button><button class="slider-dot" onclick="goSlide('s1',2)"></button><button class="slider-dot" onclick="goSlide('s1',3)"></button></div>
       </div>
-      </div>
+      
       <div class="obra-text">
         <span class="obra-num">001</span>
         <h2 class="obra-title">Critically <em>| Almost Disappeared</em></h2>
@@ -543,23 +557,19 @@
       <div class="obra-media">
       <div class="obra-slider" id="slider-s2" data-current="0" data-total="3">
       <div class="slide active">
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/000000001?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="1 px"></iframe>
-        </div>
+        <img src="https://placehold.co/1280x720/131313/444?text=1px+1" alt="1 px — foto 1" onclick="openLightbox(this.src)" />
       </div>
       <div class="slide">
-        <!-- foto 1: reemplaza src con tu imagen -->
-        <img src="https://placehold.co/600x600/131313/444?text=foto+1" alt="1 px — foto 1" onclick="openLightbox(this.src)" />
+        <img src="https://placehold.co/1280x720/131313/444?text=1px+2" alt="1 px — foto 2" onclick="openLightbox(this.src)" />
       </div>
       <div class="slide">
-        <!-- foto 2: reemplaza src con tu imagen -->
-        <img src="https://placehold.co/600x600/131313/444?text=foto+2" alt="1 px — foto 2" onclick="openLightbox(this.src)" />
+        <img src="https://placehold.co/1280x720/131313/444?text=1px+3" alt="1 px — foto 3" onclick="openLightbox(this.src)" />
       </div>
         <button class="slider-arrow prev" onclick="moveSlide('s2',-1)">&#8592;</button>
         <button class="slider-arrow next" onclick="moveSlide('s2',1)">&#8594;</button>
         <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s2',0)"></button><button class="slider-dot" onclick="goSlide('s2',1)"></button><button class="slider-dot" onclick="goSlide('s2',2)"></button></div>
       </div>
-      </div>
+      
       <div class="obra-text">
         <span class="obra-num">002</span>
         <h2 class="obra-title">1 <em>px</em></h2>
@@ -576,22 +586,19 @@
       <div class="obra-media">
       <div class="obra-slider" id="slider-s3" data-current="0" data-total="3">
       <div class="slide active">
-        <!-- foto 1: reemplaza src con tu imagen -->
-        <img src="https://placehold.co/600x600/131313/444?text=foto+1" alt="critical_failure — foto 1" onclick="openLightbox(this.src)" />
+        <img src="https://placehold.co/1280x720/131313/444?text=critical_failure+1" alt="critical_failure — foto 1" onclick="openLightbox(this.src)" />
       </div>
       <div class="slide">
-        <!-- foto 2: reemplaza src con tu imagen -->
-        <img src="https://placehold.co/600x600/131313/444?text=foto+2" alt="critical_failure — foto 2" onclick="openLightbox(this.src)" />
+        <img src="https://placehold.co/1280x720/131313/444?text=critical_failure+2" alt="critical_failure — foto 2" onclick="openLightbox(this.src)" />
       </div>
       <div class="slide">
-        <!-- foto 3: reemplaza src con tu imagen -->
-        <img src="https://placehold.co/600x600/131313/444?text=foto+3" alt="critical_failure — foto 3" onclick="openLightbox(this.src)" />
+        <img src="https://placehold.co/1280x720/131313/444?text=critical_failure+3" alt="critical_failure — foto 3" onclick="openLightbox(this.src)" />
       </div>
         <button class="slider-arrow prev" onclick="moveSlide('s3',-1)">&#8592;</button>
         <button class="slider-arrow next" onclick="moveSlide('s3',1)">&#8594;</button>
         <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s3',0)"></button><button class="slider-dot" onclick="goSlide('s3',1)"></button><button class="slider-dot" onclick="goSlide('s3',2)"></button></div>
       </div>
-      </div>
+      
       <div class="obra-text">
         <span class="obra-num">003</span>
         <h2 class="obra-title"><em>critical_failure:</em> unrecoverable_asset</h2>
@@ -607,23 +614,19 @@
       <div class="obra-media">
       <div class="obra-slider" id="slider-s4" data-current="0" data-total="3">
       <div class="slide active">
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/000000002?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Cartography"></iframe>
-        </div>
+        <img src="https://placehold.co/1280x720/131313/444?text=Cartography+1" alt="Cartography — foto 1" onclick="openLightbox(this.src)" />
       </div>
       <div class="slide">
-        <!-- foto 1: reemplaza src con tu imagen -->
-        <img src="https://placehold.co/600x600/131313/444?text=foto+1" alt="Cartography — foto 1" onclick="openLightbox(this.src)" />
+        <img src="https://placehold.co/1280x720/131313/444?text=Cartography+2" alt="Cartography — foto 2" onclick="openLightbox(this.src)" />
       </div>
       <div class="slide">
-        <!-- foto 2: reemplaza src con tu imagen -->
-        <img src="https://placehold.co/600x600/131313/444?text=foto+2" alt="Cartography — foto 2" onclick="openLightbox(this.src)" />
+        <img src="https://placehold.co/1280x720/131313/444?text=Cartography+3" alt="Cartography — foto 3" onclick="openLightbox(this.src)" />
       </div>
         <button class="slider-arrow prev" onclick="moveSlide('s4',-1)">&#8592;</button>
         <button class="slider-arrow next" onclick="moveSlide('s4',1)">&#8594;</button>
         <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s4',0)"></button><button class="slider-dot" onclick="goSlide('s4',1)"></button><button class="slider-dot" onclick="goSlide('s4',2)"></button></div>
       </div>
-      </div>
+      
       <div class="obra-text">
         <span class="obra-num">004</span>
         <h2 class="obra-title">Cartography of the <em>Irreversible:</em> Glaciar Retreat</h2>
@@ -639,25 +642,18 @@
     <!-- OBRA 5 -->
     <article class="obra-item">
       <div class="obra-media">
-      <div class="obra-slider" id="slider-s5" data-current="0" data-total="3">
+      <div class="obra-slider" id="slider-s5" data-current="0" data-total="2">
       <div class="slide active">
-        <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/000000003?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Videoclips"></iframe>
-        </div>
+        <img src="https://placehold.co/1280x720/131313/444?text=Videoclips+1" alt="Videoclips — foto 1" onclick="openLightbox(this.src)" />
       </div>
       <div class="slide">
-        <!-- foto 1: reemplaza src con tu imagen -->
-        <img src="https://placehold.co/600x600/131313/444?text=foto+1" alt="Videoclips — foto 1" onclick="openLightbox(this.src)" />
-      </div>
-      <div class="slide">
-        <!-- foto 2: reemplaza src con tu imagen -->
-        <img src="https://placehold.co/600x600/131313/444?text=foto+2" alt="Videoclips — foto 2" onclick="openLightbox(this.src)" />
+        <img src="https://placehold.co/1280x720/131313/444?text=Videoclips+2" alt="Videoclips — foto 2" onclick="openLightbox(this.src)" />
       </div>
         <button class="slider-arrow prev" onclick="moveSlide('s5',-1)">&#8592;</button>
         <button class="slider-arrow next" onclick="moveSlide('s5',1)">&#8594;</button>
-        <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s5',0)"></button><button class="slider-dot" onclick="goSlide('s5',1)"></button><button class="slider-dot" onclick="goSlide('s5',2)"></button></div>
+        <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s5',0)"></button><button class="slider-dot" onclick="goSlide('s5',1)"></button></div>
       </div>
-      </div>
+      
       <div class="obra-text">
         <span class="obra-num">005</span>
         <h2 class="obra-title">Selección de <em>Videoclips</em></h2>
@@ -671,32 +667,25 @@
     <!-- OBRA 6 -->
     <article class="obra-item">
       <div class="obra-media">
-      <div class="obra-slider" id="slider-s6" data-current="0" data-total="3">
+      <div class="obra-slider" id="slider-s6" data-current="0" data-total="1">
       <div class="slide active">
         <div class="video-wrap">
-          <iframe src="https://player.vimeo.com/video/702150964?h=3037369673" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Isos"></iframe>
+          <iframe src="https://player.vimeo.com/video/702150964?h=3037369673&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Isos"></iframe>
         </div>
-      </div>
-      <div class="slide">
-        <!-- foto 1: reemplaza src con tu imagen -->
-        <img src="https://placehold.co/600x600/131313/444?text=foto+1" alt="Isos — foto 1" onclick="openLightbox(this.src)" />
-      </div>
-      <div class="slide">
-        <!-- foto 2: reemplaza src con tu imagen -->
-        <img src="https://placehold.co/600x600/131313/444?text=foto+2" alt="Isos — foto 2" onclick="openLightbox(this.src)" />
       </div>
         <button class="slider-arrow prev" onclick="moveSlide('s6',-1)">&#8592;</button>
         <button class="slider-arrow next" onclick="moveSlide('s6',1)">&#8594;</button>
-        <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s6',0)"></button><button class="slider-dot" onclick="goSlide('s6',1)"></button><button class="slider-dot" onclick="goSlide('s6',2)"></button></div>
+        <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s6',0)"></button></div>
       </div>
-      </div>
+      
       <div class="obra-text">
         <span class="obra-num">006</span>
         <h2 class="obra-title"><em>Isos</em></h2>
-        <p class="obra-desc">Texto descriptivo a completar.</p>
+        <p class="obra-desc">Isos es una pieza de video volumétrico sobre futuros posibles. El video es resultado de un taller en Medialab-Matadero dentro del programa medios sintientes.</p>
         <div class="obra-tags">
-          <span class="tag">Por definir</span>
+          <span class="tag">Video volumétrico</span><span class="tag">2022</span>
         </div>
+        <p class="obra-collab">Viviane Toraci, Fiorella Tazza, Cecília Prandini, Álvaro Campo</p>
       </div>
     </article>
   </section>
@@ -716,6 +705,7 @@
 
   <!-- ─── ARCHIVO VISUAL ─── -->
   <div class="photo-reel-section">
+    <div class="photo-reel-inner">
     <p class="reel-label">Archivo visual</p>
     <!-- Exactamente 8 fotos. Reemplaza cada src con tu imagen real. -->
     <div class="reel-track" id="reel">
@@ -727,6 +717,7 @@
       <img class="reel-thumb" src="https://placehold.co/400x400/222222/FFFFFF?text=6" alt="Archivo 6" onclick="openLightbox(this.src)" />
       <img class="reel-thumb" src="https://placehold.co/400x400/131313/FFFFFF?text=7" alt="Archivo 7" onclick="openLightbox(this.src)" />
       <img class="reel-thumb" src="https://placehold.co/400x400/1A1A1A/888888?text=8" alt="Archivo 8" onclick="openLightbox(this.src)" />
+    </div>
     </div>
   </div>
 
