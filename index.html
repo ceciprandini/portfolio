@@ -147,6 +147,9 @@
       width: 75%;
       margin: 0 auto;
     }
+    @media (max-width: 900px) {
+      .obra-media { width: 100%; }
+    }
     .obra-media .video-wrap {
       position: relative;
       padding-bottom: 56.25%;
@@ -452,43 +455,66 @@
       /* Nav */
       nav { padding: 14px 20px; }
       .nav-name { font-size: 12px; }
-      .nav-links { gap: 20px; }
-      .nav-links a { font-size: 10px; letter-spacing: 0.08em; }
+      .nav-links { gap: 18px; }
+      .nav-links a { font-size: 10px; letter-spacing: 0.06em; }
 
       /* Hero */
-      header { padding: 0 20px 40px; min-height: 42vh; }
-      .hero-eyebrow { font-size: 9px; margin-bottom: 12px; }
-      .hero-title { font-size: clamp(18px, 5.5vw, 28px); line-height: 1.15; }
-      .hero-meta { font-size: 10px; gap: 12px; margin-top: 20px; }
+      header { padding: 80px 24px 40px; min-height: auto; text-align: left; }
+      .hero-eyebrow { font-size: 9px; margin-bottom: 12px; text-align: left; }
+      .hero-title { font-size: clamp(20px, 6vw, 30px); line-height: 1.2; }
+      .hero-meta { font-size: 10px; gap: 10px; margin-top: 20px; justify-content: flex-start; }
 
       /* Section label */
-      .section-label { padding: 32px 20px 0; }
+      .section-label { padding: 32px 0 0; }
 
       /* Obras */
-      .obra-item { grid-template-columns: 1fr; padding: 40px 20px; }
-      .obra-media { padding-right: 0; margin-bottom: 24px; }
+      #obra { padding: 0 24px 60px; }
+      .obra-item { padding: 40px 0; }
+      .obra-media { width: 100%; margin: 0; margin-bottom: 24px; }
       .obra-text { padding-left: 0; gap: 14px; }
-      .obra-title { font-size: clamp(16px, 4.5vw, 22px); }
+      .obra-title { font-size: clamp(17px, 5vw, 24px); }
       .obra-desc { font-size: 13px; }
       .tag { font-size: 9px; }
 
+      /* Slider arrows always visible on mobile */
+      .slider-arrow { opacity: 0.7; width: 32px; height: 32px; font-size: 16px; }
+
       /* Statement / Bio */
-      #about { padding: 40px 20px; }
-      .about-section-bio { padding: 40px 20px; }
-      .about-block { grid-template-columns: 80px 1fr; gap: 20px; }
+      #about { padding: 40px 24px; }
+      .about-section-bio { padding: 40px 24px 60px; }
+      .about-block { grid-template-columns: 1fr; gap: 12px; }
       .about-block + .about-block { margin-top: 32px; padding-top: 32px; }
-      .about-block h2 { font-size: 9px; }
-      .statement-text { font-size: 13px; line-height: 1.7; }
-      .bio-text { font-size: 12px; line-height: 1.7; }
+      .about-block h2 { font-size: 9px; margin-bottom: 14px; }
+      .statement-text { font-size: 14px; line-height: 1.75; }
+      .bio-text { font-size: 13px; line-height: 1.75; }
 
       /* Archivo visual */
-      .photo-reel-section { grid-template-columns: 80px 1fr; padding: 40px 20px; gap: 20px; }
+      .photo-reel-section { padding: 40px 24px; }
+      .photo-reel-inner { width: 100%; grid-template-columns: 1fr; gap: 16px; }
       .reel-track { grid-template-columns: repeat(4, 1fr); gap: 3px; }
+      .reel-label { padding-top: 0; }
 
       /* Footer */
-      footer { padding: 40px 20px; }
+      footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; gap: 20px; }
       .footer-links { gap: 20px; }
       .footer-links a { font-size: 10px; }
+      .footer-copy { margin-top: 16px; }
+
+      /* Lightbox */
+      #lightbox img { max-width: 95vw; max-height: 80vh; }
+      #lightbox-close { top: 16px; right: 20px; font-size: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 12px 16px; }
+      .nav-links { gap: 14px; }
+      #obra { padding: 0 16px 48px; }
+      header { padding: 72px 16px 32px; }
+      #about { padding: 32px 16px; }
+      .about-section-bio { padding: 32px 16px 48px; }
+      .photo-reel-section { padding: 32px 16px; }
+      footer { padding: 32px 16px; }
+      .reel-track { grid-template-columns: repeat(4, 1fr); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -641,28 +667,57 @@
         </div>
     </article>
 
-    <!-- OBRA 5 -->
+    <!-- OBRA 5 — PIEZAS AUDIOVISUALES -->
     <article class="obra-item">
       <div class="obra-media">
-      <div class="obra-slider" id="slider-s5" data-current="0" data-total="2">
-      <div class="slide active">
-        <img src="https://placehold.co/1280x720/131313/444?text=Videoclips+1" alt="Videoclips — foto 1" onclick="openLightbox(this.src)" />
-      </div>
-      <div class="slide">
-        <img src="https://placehold.co/1280x720/131313/444?text=Videoclips+2" alt="Videoclips — foto 2" onclick="openLightbox(this.src)" />
-      </div>
-        <button class="slider-arrow prev" onclick="moveSlide('s5',-1)">&#8592;</button>
-        <button class="slider-arrow next" onclick="moveSlide('s5',1)">&#8594;</button>
-        <div class="slider-nav"><button class="slider-dot active" onclick="goSlide('s5',0)"></button><button class="slider-dot" onclick="goSlide('s5',1)"></button></div>
-      </div>
-      
-      <div class="obra-text">
-        <span class="obra-num">16:9</span>
-        <h2 class="obra-title">Selección de <em>Piezas Audiovisuales</em></h2>
-        <p class="obra-desc">Piezas seleccionadas de dirección de videoclips. Texto descriptivo a completar.</p>
-        <div class="obra-tags">
+        <div class="obra-slider" id="slider-s5" data-current="0" data-total="5">
+
+          <div class="slide active">
+            <div class="video-wrap">
+              <iframe src="https://player.vimeo.com/video/XXXXXXX?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Videoclip 1"></iframe>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="video-wrap">
+              <iframe src="https://player.vimeo.com/video/XXXXXXX?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Videoclip 2"></iframe>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="video-wrap">
+              <iframe src="https://player.vimeo.com/video/XXXXXXX?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Videoclip 3"></iframe>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="video-wrap">
+              <iframe src="https://player.vimeo.com/video/XXXXXXX?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Videoclip 4"></iframe>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="video-wrap">
+              <iframe src="https://player.vimeo.com/video/XXXXXXX?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Videoclip 5"></iframe>
+            </div>
+          </div>
+
+          <button class="slider-arrow prev" onclick="moveSlide('s5',-1)">&#8592;</button>
+          <button class="slider-arrow next" onclick="moveSlide('s5',1)">&#8594;</button>
+          <div class="slider-nav">
+            <button class="slider-dot active" onclick="goSlide('s5',0)"></button>
+            <button class="slider-dot" onclick="goSlide('s5',1)"></button>
+            <button class="slider-dot" onclick="goSlide('s5',2)"></button>
+            <button class="slider-dot" onclick="goSlide('s5',3)"></button>
+            <button class="slider-dot" onclick="goSlide('s5',4)"></button>
+          </div>
+        </div>
+
+      <div class="obra-text" id="obra-text-s5">
+        <!-- El texto se actualiza por JS al cambiar slide -->
+        <span class="obra-num" id="s5-num">videoclip</span>
+        <h2 class="obra-title" id="s5-title">Título <em>videoclip 1</em></h2>
+        <p class="obra-desc" id="s5-desc">Descripción de la primera pieza: concepto, artista, año.</p>
+        <div class="obra-tags" id="s5-tags">
           <span class="tag">Videoclip</span><span class="tag">Dirección</span>
         </div>
+      </div>
       </div>
     </article>
 
@@ -758,9 +813,12 @@
 
   <!-- ─── JS ─── -->
   <script>
-    /* Lightbox */
+    /* Lightbox — muestra la imagen en su proporción original */
     function openLightbox(src) {
-      document.getElementById('lightbox-img').src = src;
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      img.style.width = '';
+      img.style.height = '';
       document.getElementById('lightbox').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -772,8 +830,50 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
+    /* ─── DATOS DE TEXTO POR SLIDE — OBRA 5 ─── */
+    /* Edita aquí los textos de cada video */
+    const s5Data = [
+      {
+        num: 'videoclip',
+        titulo: 'Título <em>videoclip 1</em>',
+        desc: 'Descripción de la primera pieza: concepto, artista, año.',
+        tags: ['Videoclip', 'Dirección']
+      },
+      {
+        num: 'videoclip',
+        titulo: 'Título <em>videoclip 2</em>',
+        desc: 'Descripción de la segunda pieza: concepto, artista, año.',
+        tags: ['Videoclip', 'Dirección']
+      },
+      {
+        num: 'videoclip',
+        titulo: 'Título <em>videoclip 3</em>',
+        desc: 'Descripción de la tercera pieza: concepto, artista, año.',
+        tags: ['Videoclip', 'Dirección']
+      },
+      {
+        num: 'videoclip',
+        titulo: 'Título <em>videoclip 4</em>',
+        desc: 'Descripción de la cuarta pieza: concepto, artista, año.',
+        tags: ['Videoclip', 'Dirección']
+      },
+      {
+        num: 'videoclip',
+        titulo: 'Título <em>videoclip 5</em>',
+        desc: 'Descripción de la quinta pieza: concepto, artista, año.',
+        tags: ['Videoclip', 'Dirección']
+      }
+    ];
 
-    /* Slider por obra */
+    function updateS5Text(idx) {
+      const d = s5Data[idx];
+      document.getElementById('s5-num').textContent   = d.num;
+      document.getElementById('s5-title').innerHTML   = d.titulo;
+      document.getElementById('s5-desc').textContent  = d.desc;
+      document.getElementById('s5-tags').innerHTML    = d.tags.map(t => `<span class="tag">${t}</span>`).join('');
+    }
+
+    /* ─── SLIDER ─── */
     function goSlide(uid, idx) {
       const el = document.getElementById('slider-' + uid);
       const slides = el.querySelectorAll('.slide');
@@ -783,12 +883,13 @@
       slides.forEach((s,i) => s.classList.toggle('active', i === idx));
       dots.forEach((d,i)   => d.classList.toggle('active', i === idx));
       el.dataset.current = idx;
+      /* Actualizar texto si es la obra de videoclips */
+      if (uid === 's5') updateS5Text(idx);
     }
     function moveSlide(uid, dir) {
       const el = document.getElementById('slider-' + uid);
       goSlide(uid, parseInt(el.dataset.current) + dir);
     }
-
 
   </script>
 
