@@ -265,20 +265,6 @@
       line-height: 1.75;
       color: #AAAAAA;
     }
-    .obra-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 4px;
-    }
-    .tag {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--mid);
-      border: 1px solid var(--border);
-      padding: 4px 10px;
-    }
     .obra-award {
       font-size: 12px;
       color: #FFFFFF;
@@ -578,10 +564,12 @@
         <span class="obra-num">16:9</span>
         <h2 class="obra-title">Critically <em>| Almost Disappeared</em> | Disappeared</em></h2>
         <p class="obra-desc">El código altera la forma, textura y continuidad de las imágenes. El cambio climático altera irreversiblemente las estructuras naturales de los glaciares. La deformación digital se vuelve un reflejo del derretimiento, retracción y desaparición de los glaciares.</p>
-        <div class="obra-tags">
-          <span class="tag">Videoarte</span><span class="tag">Mono/Stereo</span><span class="tag">UHD</span><span class="tag">2025</span>
-        </div>
-        <p class="obra-award">2026 — FILE Electronic Language International Festival (Brasil).<br>Selección en la categoría de videoarte.</p>
+        <p class="obra-award">Seleccionado por:<br>
+          <a href="https://file.org.br/video_art_2026/file-sao-paulo-2026-inter-criatividade-arte-e-tecnologia-videoarte/" target="_blank" rel="noopener">FILE Electronic Language International Festival</a> — 2026 — Brasil<br>
+          <a href="https://viertewelleff.com/speculatives-ecologies/" target="_blank" rel="noopener">Speculative Ecologies programme</a> (Vierte Welle Film Festival) — Sep. 2026 — Berlín, Alemania<br>
+          <a href="https://sites.google.com/view/alcvideoartfestival/inicio?authuser=0" target="_blank" rel="noopener">ALC Videoart Festival</a> — Sep. 2026 — Alicante, España<br>
+          Selección Nacional 15° edición Festival PLAY - videoarte y cine experimental — Oct. 2026 — Corrientes, Argentina
+        </p>
       </div>
     </article>
 
@@ -608,9 +596,6 @@
         <h2 class="obra-title">1 <em>px</em></h2>
         <p class="obra-desc">Ensayo visual que explora el colapso de los glaciares convirtiendo la pérdida material del hielo en una destrucción irreversible de datos digitales.</p>
         <p class="obra-desc">El algoritmo devora la geografía física y digital, culminando en un vacío total que reduce la mayor reserva de agua dulce del planeta a un único, aislado e insignificante píxel sin memoria.</p>
-        <div class="obra-tags">
-          <span class="tag">Ensayo Visual</span><span class="tag">Mono/Stereo</span><span class="tag">pixel</span><span class="tag">2026</span>
-        </div>
       </div>
     </article>
 
@@ -636,9 +621,6 @@
         <span class="obra-num">9:16</span>
         <h2 class="obra-title"><em>critical_failure:</em> unrecoverable_asset</h2>
         <p class="obra-desc">La obra se construye a partir de imágenes satelitales del glaciar Hektoria, en la Península Antártica, registradas por el Proyecto Copernicus entre 2021 y 2025.</p>
-        <div class="obra-tags">
-          <span class="tag">artcode</span><span class="tag">Imagen Satelital</span><span class="tag">2026</span>
-        </div>
       </div>
     </article>
 
@@ -666,9 +648,6 @@
         <p class="obra-desc">La instalación toma el Glaciar Perito Moreno como punto de partida. Su cartografía reacciona a la presencia y el calor corporal del público: a más cuerpos, mayor temperatura; a mayor temperatura, más hielo derretido.</p>
         <p class="obra-desc">Basada en datos científicos publicados en <em>Nature</em>. El sonido es de Ugo Nanni, <em>La canción de los glaciares árticos</em>, CC BY.</p>
          <p class="obra-desc">Realizado por Álvaro Campo y Ceci Prandini</p>
-        <div class="obra-tags">
-          <span class="tag">Instalación</span><span class="tag">Interactivo</span><span class="tag">2026</span>
-        </div>
     </article>
 
     <!-- OBRA 6 -->
@@ -690,9 +669,6 @@
         <h2 class="obra-title"><em>Isos</em></h2>
         <p class="obra-desc">Isos es una pieza de video volumétrico sobre futuros posibles. El video es resultado de un taller en Medialab-Matadero dentro del programa medios sintientes.</p>
         <p class="obra-desc">Realizado por Viviane Toraci, Fiorella Tazza, Ceci Prandini, Álvaro Campo</p>
-        <div class="obra-tags">
-          <span class="tag">Video volumétrico</span><span class="tag">2022</span><span class="tag">vr</span>
-           </div>
         <p class="obra-award">2022 — Madrid In Game (Madrid). Exhibición de “ISOS”, una experiencia inmersiva interactiva en entornos de Realidad Virtual (VR).</p>
       </div>      
     </article>
@@ -744,9 +720,6 @@
         <span class="obra-num" id="s5-num">16:9</span>
         <h2 class="obra-title" id="s5-title"><em>Selección Audiovisual</em></h2>
         <p class="obra-desc" id="s5-desc">2020 | Bandidos Rurales ft. Lula Bertoldi. Collage visual.</p>
-        <div class="obra-tags" id="s5-tags">
-          <span class="tag">Videoclip</span><span class="tag">Edición</span>
-        </div>
       </div>
       </div>
     </article>
@@ -841,32 +814,27 @@
       {
         num: 'videoclip',
         titulo: '<em>Selección Audiovisual</em>',
-        desc: '2020 | Bandidos Rurales ft. Lula Bertoldi. Collage visual',
-        tags: ['Videoclip', 'Edición']
+        desc: '2020 | Bandidos Rurales ft. Lula Bertoldi. Collage visual'
       },
       {
         num: 'videoclip',
         titulo: '<em>Selección Audiovisual</em>',
-        desc: '2012 | Lucy in the Sky with Diamonds - Juan Bageneta. Videoclip para el arreglo para Bajo Electrico',
-        tags: ['Videoclip', 'Dirección', 'Edición']
+        desc: '2012 | Lucy in the Sky with Diamonds - Juan Bageneta. Videoclip para el arreglo para Bajo Electrico'
       },
       {
         num: 'videoarte',
         titulo: '<em>Selección Audiovisual</em>',
-        desc: '2015 | 70 cm. Videoarte realizado con fotografias de toma directa en la Clínica de obra de Lena Szankay durante 2015',
-        tags: ['Fotografia', 'Videoarte']
+        desc: '2015 | 70 cm. Videoarte realizado con fotografias de toma directa en la Clínica de obra de Lena Szankay durante 2015'
       },
       {
         num: 'videoclip',
         titulo: '<em>Selección Audiovisual</em>',
-        desc: '2024 | V.4. Musica original de Ingrid Feniger',
-        tags: ['touchdesigner', 'Audioreativo']
+        desc: '2024 | V.4. Musica original de Ingrid Feniger'
       },
       {
         num: 'reel',
         titulo: '<em>Selección Audiovisual</em>',
-        desc: '2018 | Impropio. Reel visual de la banda Sexteto Incierto',
-        tags: ['Videoclip', 'Camara', 'Edición']
+        desc: '2018 | Impropio. Reel visual de la banda Sexteto Incierto'
       }
     ];
 
@@ -875,7 +843,6 @@
       document.getElementById('s5-num').textContent   = d.num;
       document.getElementById('s5-title').innerHTML   = d.titulo;
       document.getElementById('s5-desc').textContent  = d.desc;
-      document.getElementById('s5-tags').innerHTML    = d.tags.map(t => `<span class="tag">${t}</span>`).join('');
     }
 
     /* ─── SLIDER ─── */
